@@ -53,7 +53,7 @@ export function CenteredAroundTestimonials() {
             : 0,
           rotate: testimonial.rotate ?? 20,
         }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        transition={{ stiffness: 50, damping: 20 }}
       >
         <Image
           src={testimonial.src}

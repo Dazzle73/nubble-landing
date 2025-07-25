@@ -57,7 +57,7 @@ export function Pricing() {
             {active === tab.value && (
               <motion.span
                 layoutId="moving-div"
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                transition={{ bounce: 0.2, duration: 0.6 }}
                 className="absolute inset-0 bg-black dark:bg-white"
               />
             )}

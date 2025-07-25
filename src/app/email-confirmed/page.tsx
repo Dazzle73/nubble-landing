@@ -44,7 +44,7 @@ export default function EmailConfirmedPage() {
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={showAnimation ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                transition={{ duration: 0.6, bounce: 0.4 }}
                 className="mx-auto mb-8"
               >
                 <div className="relative">
