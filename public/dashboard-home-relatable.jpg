@@ -1,0 +1,28 @@
+I cannot directly download and save files to your local file system. However, I can provide you with the instructions to manually download the image and save it to your project:
+
+1. Right-click on this URL and select "Save image as..." or "Download image":
+   https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/88645975-f3f3-47be-bc6c-c8626b896241/generated_images/a-clean%2c-inviting-app-dashboard-home-s-b12fef23-20250721085537.jpg
+
+2. Save the file as `dashboard-home-relatable.jpg` in your project's `public/` directory
+
+3. The file path should be: `public/dashboard-home-relatable.jpg`
+
+4. You can then reference it in your components as `/dashboard-home-relatable.jpg`
+
+Alternatively, you can use command line tools to download it:
+
+# Navigate to your project's public directory
+cd public/
+
+# Download the image using curl
+curl -o dashboard-home-relatable.jpg "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/88645975-f3f3-47be-bc6c-c8626b896241/generated_images/a-clean%2c-inviting-app-dashboard-home-s-b12fef23-20250721085537.jpg"
+Or using wget:
+
+# Navigate to your project's public directory
+cd public/
+
+# Download the image using wget
+wget -O dashboard-home-relatable.jpg "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/project-uploads/88645975-f3f3-47be-bc6c-c8626b896241/generated_images/a-clean%2c-inviting-app-dashboard-home-s-b12fef23-20250721085537.jpg"
+Once saved, you can use it in your React components like this:
+
+<img src="/dashboard-home-relatable.jpg" alt="Dashboard Home" />

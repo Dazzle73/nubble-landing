@@ -1,0 +1,21 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with rounded corners for iOS -->
+  <rect width="180" height="180" rx="40" fill="#4ADE80"/>
+  
+  <!-- Subtle gradient overlay -->
+  <defs>
+    <linearGradient id="overlay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.1);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" rx="40" fill="url(#overlay)"/>
+  
+  <!-- Stylized "N" for Nubble - larger and centered -->
+  <path d="M45 45v90h18v-60l36 60h18V45h-18v60L63 45H45z" fill="white"/>
+  
+  <!-- Small decorative elements -->
+  <circle cx="135" cy="60" r="8" fill="white" opacity="0.7"/>
+  <circle cx="150" cy="120" r="6" fill="white" opacity="0.5"/>
+  <circle cx="45" cy="150" r="4" fill="white" opacity="0.6"/>
+</svg>

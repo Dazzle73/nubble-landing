@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nubble.app/sitemap.xml
+
+# Disallow crawling of admin or sensitive areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow crawling of main pages
+Allow: /
+Allow: /privacy-policy
+Allow: /terms-conditions

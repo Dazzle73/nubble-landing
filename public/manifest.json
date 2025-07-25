@@ -1,0 +1,21 @@
+{
+  "name": "Nubble - AI-Powered Nutrition Tracker",
+  "short_name": "Nubble",
+  "description": "Transform your relationship with food using Nubble's AI-powered app. Overcome snacking addiction and build healthier habits.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#143638",
+  "theme_color": "#4ADE80",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
