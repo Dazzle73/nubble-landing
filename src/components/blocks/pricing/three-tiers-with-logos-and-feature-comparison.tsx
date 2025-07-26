@@ -285,11 +285,11 @@ export default function ThreeTiersWithLogosAndFeatureComparison() {
                         >
                           <dt className="text-sm/6 font-normal text-gray-600">{feature.name}</dt>
                           <dd className="text-center">
-                            {typeof feature.tiers[tier.name] === 'string' ? (
-                              <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
+                            {typeof (feature.tiers as any)[tier.name] === 'string' ? (
+                              <span className="text-sm/6 text-gray-950">{(feature.tiers as any)[tier.name]}</span>
                             ) : (
                               <>
-                                {feature.tiers[tier.name] === true ? (
+                                {(feature.tiers as any)[tier.name] === true ? (
                                   <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
                                 ) : (
                                   <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
