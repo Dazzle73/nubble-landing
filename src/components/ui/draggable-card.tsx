@@ -119,7 +119,6 @@ export const DraggableCardBody = ({
           rotateX: 0,
           rotateY: 0,
           transition: {
-            type: "spring",
             ...springConfig,
           },
         });

@@ -124,7 +124,6 @@ export const ModalBody = ({
               rotateX: 10,
             }}
             transition={{
-              type: "spring",
               stiffness: 260,
               damping: 15,
             }}

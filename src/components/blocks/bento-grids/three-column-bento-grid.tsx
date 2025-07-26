@@ -123,7 +123,6 @@ const SkeletonOne = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{
-          type: "spring",
           stiffness: 260,
           damping: 20,
           delay: 1,
@@ -506,7 +505,7 @@ export const SkeletonFour = ({}: {}) => {
               <motion.div
                 layoutId="file-upload"
                 variants={mainVariant}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                transition={{ stiffness: 300, damping: 20 }}
                 className={cn(
                   "relative z-40 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md bg-white group-hover/file:shadow-2xl dark:bg-neutral-900",
                   "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]"
