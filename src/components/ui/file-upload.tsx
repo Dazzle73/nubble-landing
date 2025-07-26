@@ -131,7 +131,6 @@ export const FileUpload = ({
                 layoutId="file-upload"
                 variants={mainVariant}
                 transition={{
-                  type: "spring",
                   stiffness: 300,
                   damping: 20,
                 }}

@@ -105,7 +105,6 @@ export const FeaturedImages = ({
                       y: 0,
                       scale: 1,
                       transition: {
-                        type: "spring",
                         stiffness: 160,
                         damping: 20,
                       },
