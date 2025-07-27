@@ -7,7 +7,7 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 interface Links {
   label: string;
   href: string;
-  icon: React.JSX.Element | React.ReactNode;
+  icon: React.ReactElement | React.ReactNode;
 }
 
 interface SidebarContextProps {

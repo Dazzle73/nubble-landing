@@ -30,7 +30,7 @@ const DishScanAnimationFeature = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.3 }}
             className="text-4xl lg:text-5xl font-bold text-white mb-6"
           >
             AI-Powered Food Scanning
@@ -38,7 +38,7 @@ const DishScanAnimationFeature = () => {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.3 }}
             transition={{ delay: 0.1 }}
             className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto"
           >

@@ -27,7 +27,7 @@ export default function NubbleFinalCTA() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.3 }}
             className="space-y-8"
           >
             {/* Main headline */}
@@ -46,7 +46,7 @@ export default function NubbleFinalCTA() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
+              viewport={{ amount: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
             >
               {/* iOS Download Button */}
@@ -107,7 +107,7 @@ export default function NubbleFinalCTA() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ amount: 0.3 }}
               className="pt-8 space-y-4"
             >
               <p className="text-white/70 text-sm">
