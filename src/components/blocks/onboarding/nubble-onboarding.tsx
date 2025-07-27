@@ -679,10 +679,10 @@ export function NubbleOnboarding({ isOpen, onClose }: OnboardingProps) {
           <div className="flex flex-col gap-4 items-center">
             <div className="flex gap-4">
               <a href="https://apps.apple.com/app/nubble" className="transition-transform hover:scale-105" target="_blank" rel="noopener noreferrer">
-                <img src="/appstore.svg" alt="Download on the App Store" className="h-12 w-auto" />
+                <img src="/AppStore.svg" alt="Download on the App Store" className="h-12 w-auto" />
               </a>
               <a href="https://play.google.com/store/apps/details?id=com.nubble.app" className="transition-transform hover:scale-105" target="_blank" rel="noopener noreferrer">
-                <img src="/android.svg" alt="Get it on Google Play" className="h-12 w-auto" />
+                <img src="/Android.svg" alt="Get it on Google Play" className="h-12 w-auto" />
               </a>
             </div>
             

@@ -26,6 +26,10 @@ export function SimpleFooterWithFourGrids() {
       href: "mailto:nubble.help@gmail.com",
     },
     {
+      title: "UGC Program",
+      href: "/ugc",
+    },
+    {
       title: "Privacy Policy",
       href: "/privacy-policy",
     },

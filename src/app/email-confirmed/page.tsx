@@ -121,7 +121,7 @@ export default function EmailConfirmedPage() {
                       aria-label="Download on the App Store"
                     >
                       <img
-                        src="/appstore.svg"
+                        src="/AppStore.svg"
                         alt="Download on the App Store"
                         className="h-14 w-auto"
                       />
@@ -134,7 +134,7 @@ export default function EmailConfirmedPage() {
                       aria-label="Get it on Google Play"
                     >
                       <img
-                        src="/android.svg"
+                        src="/Android.svg"
                         alt="Get it on Google Play"
                         className="h-14 w-auto"
                       />

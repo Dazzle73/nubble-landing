@@ -59,7 +59,7 @@ export default function WithAppScreenshotOnDark() {
                     }}
                   >
                     <img
-                      src="/appstore.svg"
+                      src="/AppStore.svg"
                       alt="Download on the App Store"
                       className="h-12 w-auto"
                     />
@@ -76,7 +76,7 @@ export default function WithAppScreenshotOnDark() {
                     }}
                   >
                     <img
-                      src="/android.svg"
+                      src="/Android.svg"
                       alt="Get it on Google Play"
                       className="h-12 w-auto"
                     />
