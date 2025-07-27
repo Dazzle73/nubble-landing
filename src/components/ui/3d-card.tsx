@@ -95,8 +95,8 @@ export const CardBody = ({
   );
 };
 
-export const CardItem = <T extends React.ElementType = "div">({
-  as,
+export const CardItem = ({
+  as: Tag = "div",
   children,
   className,
   translateX = 0,
@@ -107,7 +107,7 @@ export const CardItem = <T extends React.ElementType = "div">({
   rotateZ = 0,
   ...rest
 }: {
-  as?: T;
+  as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
   translateX?: number | string;
@@ -116,7 +116,8 @@ export const CardItem = <T extends React.ElementType = "div">({
   rotateX?: number | string;
   rotateY?: number | string;
   rotateZ?: number | string;
-} & Omit<React.ComponentProps<T>, "as" | "children" | "className" | "translateX" | "translateY" | "translateZ" | "rotateX" | "rotateY" | "rotateZ">) => {
+  [key: string]: any;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
@@ -133,16 +134,14 @@ export const CardItem = <T extends React.ElementType = "div">({
     }
   };
 
-  const Tag = as || "div";
-  
-  return (
-    <Tag
-      ref={ref}
-      className={cn("w-fit transition duration-200 ease-linear", className)}
-      {...rest}
-    >
-      {children}
-    </Tag>
+  return React.createElement(
+    Tag,
+    {
+      ref: ref as any,
+      className: cn("w-fit transition duration-200 ease-linear", className),
+      ...rest,
+    },
+    children
   );
 };
 
