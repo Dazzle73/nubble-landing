@@ -1,6 +1,6 @@
 import { useEffect, RefObject } from "react";
 
-export const useOutsideClick = <T extends HTMLElement = HTMLElement>(
+export const useOutsideClick = <T extends HTMLElement | null = HTMLElement>(
   ref: RefObject<T>,
   callback: () => void
 ) => {
