@@ -84,7 +84,7 @@ export default function ThreeTiersWithLogosAndFeatureComparison() {
           Pricing that grows with your team size
         </h1>
         <p className="mt-6 max-w-2xl text-lg font-medium text-pretty text-gray-600 max-lg:mx-auto sm:text-xl/8">
-          Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer
+          Choose an affordable plan that's packed with the best features for engaging your audience, creating customer
           loyalty, and driving sales.
         </p>
       </div>
@@ -225,21 +225,21 @@ export default function ThreeTiersWithLogosAndFeatureComparison() {
                   </th>
                   {tiers.map((tier) => (
                     <td key={tier.name} className="p-4 max-sm:text-center">
-                      {typeof feature.tiers[tier.name] === 'string' ? (
+                      {typeof (feature.tiers as any)[tier.name] === 'string' ? (
                         <>
                           <span className="sr-only">{tier.name} includes:</span>
-                          <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
+                          <span className="text-sm/6 text-gray-950">{(feature.tiers as any)[tier.name]}</span>
                         </>
                       ) : (
                         <>
-                          {feature.tiers[tier.name] === true ? (
+                          {(feature.tiers as any)[tier.name] === true ? (
                             <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
                           ) : (
                             <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
                           )}
 
                           <span className="sr-only">
-                            {feature.tiers[tier.name] === true
+                            {(feature.tiers as any)[tier.name] === true
                               ? `Included in ${tier.name}`
                               : `Not included in ${tier.name}`}
                           </span>
@@ -295,7 +295,7 @@ export default function ThreeTiersWithLogosAndFeatureComparison() {
                                   <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
                                 )}
 
-                                <span className="sr-only">{feature.tiers[tier.name] === true ? 'Yes' : 'No'}</span>
+                                <span className="sr-only">{(feature.tiers as any)[tier.name] === true ? 'Yes' : 'No'}</span>
                               </>
                             )}
                           </dd>
