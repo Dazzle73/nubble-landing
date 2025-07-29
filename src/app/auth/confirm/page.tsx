@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function AuthConfirmPage() {
+function AuthConfirmContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -22,11 +22,32 @@ export default function AuthConfirmPage() {
   }, [router, searchParams])
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#143638] to-black">
       <div className="text-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#07393C] mx-auto mb-4"></div>
-        <p className="text-gray-600">Confirming your email...</p>
+        <p className="text-white">Confirming your email...</p>
       </div>
     </div>
+  )
+}
+
+// Loading component for Suspense fallback
+function AuthConfirmLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#143638] to-black">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
+        <p className="text-white">Loading...</p>
+      </div>
+    </div>
+  )
+}
+
+// Main export with Suspense boundary
+export default function AuthConfirmPage() {
+  return (
+    <Suspense fallback={<AuthConfirmLoading />}>
+      <AuthConfirmContent />
+    </Suspense>
   )
 }
