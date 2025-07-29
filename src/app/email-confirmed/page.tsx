@@ -27,26 +27,25 @@ export default function EmailConfirmedPage() {
       }
 
       try {
-        // Call your secure API proxy to confirm email
-        const response = await fetch('https://nubble-api-proxy.onrender.com/auth/confirm-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            token_hash: token,
-            type: 'email'
-          })
+        // Create a temporary Supabase client for email confirmation
+        const { createClient } = await import('@supabase/supabase-js')
+        const supabase = createClient(
+          'https://kaverone73gmail.supabase.co',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthdmVyb25lNzNnbWFpbCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzM3NTY5MzY1LCJleHAiOjIwNTMxNDUzNjV9.wYlOUdQPKnJRTJOiVNYhQJlLxCGNWNZNMJzCiNYRkYU'
+        )
+
+        // Verify the email confirmation token
+        const { data, error } = await supabase.auth.verifyOtp({
+          token_hash: token,
+          type: 'email'
         })
 
-        const result = await response.json()
-
-        if (result.error) {
-          if (result.error.message?.includes('already confirmed')) {
+        if (error) {
+          if (error.message?.includes('already confirmed')) {
             setConfirmationState('already_confirmed')
           } else {
             setConfirmationState('error')
-            setErrorMessage(result.error.message || 'Email confirmation failed')
+            setErrorMessage(error.message || 'Email confirmation failed')
           }
         } else {
           setConfirmationState('success')
