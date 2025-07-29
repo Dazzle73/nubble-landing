@@ -1,17 +1,63 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { CheckCircle, Download, Smartphone, Star } from 'lucide-react'
+import { CheckCircle, Download, Smartphone, Star, AlertCircle, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useSearchParams } from 'next/navigation'
 import SEOHead from '@/components/seo/SEOHead'
+
+type ConfirmationState = 'loading' | 'success' | 'error' | 'already_confirmed'
 
 export default function EmailConfirmedPage() {
   const [showAnimation, setShowAnimation] = useState(false)
+  const [confirmationState, setConfirmationState] = useState<ConfirmationState>('loading')
+  const [errorMessage, setErrorMessage] = useState('')
+  const searchParams = useSearchParams()
 
   useEffect(() => {
-    // Trigger animation after component mounts
-    setTimeout(() => setShowAnimation(true), 500)
-  }, [])
+    const confirmEmail = async () => {
+      const token = searchParams.get('token')
+      const type = searchParams.get('type')
+      
+      // If no token, assume user navigated directly (already confirmed)
+      if (!token || type !== 'email') {
+        setConfirmationState('already_confirmed')
+        setTimeout(() => setShowAnimation(true), 500)
+        return
+      }
+
+      try {
+        // Call your secure API proxy to confirm email
+        const response = await fetch('https://nubble-api-proxy.onrender.com/auth/confirm-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token })
+        })
+
+        const result = await response.json()
+
+        if (result.error) {
+          if (result.error.message?.includes('already confirmed')) {
+            setConfirmationState('already_confirmed')
+          } else {
+            setConfirmationState('error')
+            setErrorMessage(result.error.message || 'Email confirmation failed')
+          }
+        } else {
+          setConfirmationState('success')
+        }
+      } catch (error) {
+        setConfirmationState('error')
+        setErrorMessage('Network error. Please try again.')
+      }
+
+      setTimeout(() => setShowAnimation(true), 500)
+    }
+
+    confirmEmail()
+  }, [searchParams])
 
   return (
     <>
@@ -40,38 +86,59 @@ export default function EmailConfirmedPage() {
         <div className="py-24 sm:py-32 lg:pb-40">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <div className="text-center">
-              {/* Success Animation */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={showAnimation ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 0.6, bounce: 0.4 }}
-                className="mx-auto mb-8"
-              >
-                <div className="relative">
-                  <CheckCircle className="w-24 h-24 text-[#4ADE80] mx-auto" />
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={showAnimation ? { scale: [1, 1.2, 1] } : {}}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="absolute -inset-4 bg-[#4ADE80]/20 rounded-full blur-xl"
-                  />
-                </div>
-              </motion.div>
+              {/* Loading State */}
+              {confirmationState === 'loading' && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="mx-auto mb-8"
+                >
+                  <Loader2 className="w-16 h-16 text-[#4ADE80] mx-auto animate-spin" />
+                  <h1 className="text-3xl font-bold text-white mt-6 mb-4">
+                    Confirming your email...
+                  </h1>
+                  <p className="text-gray-300">
+                    Please wait while we verify your email address.
+                  </p>
+                </motion.div>
+              )}
 
-              {/* Main Content */}
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={showAnimation ? { y: 0, opacity: 1 } : {}}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="space-y-6"
+              {/* Success State */}
+              {(confirmationState === 'success' || confirmationState === 'already_confirmed') && (
+                <>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={showAnimation ? { scale: 1, opacity: 1 } : {}}
+                    transition={{ duration: 0.6, bounce: 0.4 }}
+                    className="mx-auto mb-8"
+                  >
+                    <div className="relative">
+                      <CheckCircle className="w-24 h-24 text-[#4ADE80] mx-auto" />
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={showAnimation ? { scale: [1, 1.2, 1] } : {}}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="absolute -inset-4 bg-[#4ADE80]/20 rounded-full blur-xl"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Main Content - Only show for success states */}
+                  <motion.div
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={showAnimation ? { y: 0, opacity: 1 } : {}}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="space-y-6"
               >
                 <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                  Email Confirmed! 🎉
+                  {confirmationState === 'success' ? 'Email Confirmed! 🎉' : 'Welcome Back! 🎉'}
                 </h1>
                 
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                  Welcome to your journey towards freedom from snacking addiction. 
-                  Your personalized plan is ready and waiting for you.
+                  {confirmationState === 'success' 
+                    ? 'Welcome to your journey towards freedom from snacking addiction. Your personalized plan is ready and waiting for you.'
+                    : 'Your email is already confirmed. Welcome back to your journey towards freedom from snacking addiction.'
+                  }
                 </p>
 
                 {/* Plan Summary */}
@@ -207,7 +274,9 @@ export default function EmailConfirmedPage() {
                     You've got this! 💪
                   </p>
                 </div>
-              </motion.div>
+                  </motion.div>
+                </>
+              )}
             </div>
           </div>
         </div>

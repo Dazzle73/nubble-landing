@@ -48,10 +48,22 @@ export default function ResetPasswordForm() {
     setFormState(prev => ({ ...prev, isSubmitting: true }))
 
     try {
-      // Simulate API call (replace with actual API endpoint)
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Import Supabase reset function
+      const { resetPassword } = await import('@/lib/supabase')
       
-      // For demo purposes, always succeed
+      // Call Supabase reset password
+      const { error } = await resetPassword(formState.email)
+      
+      if (error) {
+        setFormState(prev => ({ 
+          ...prev, 
+          isSubmitting: false, 
+          error: error.message 
+        }))
+        return
+      }
+      
+      // Success
       setFormState(prev => ({ 
         ...prev, 
         isSubmitting: false, 
