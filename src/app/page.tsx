@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import WithAppScreenshotOnDark from "@/components/blocks/heros/with-app-screenshot-on-dark";
 import NubbleFinalCTA from "@/components/blocks/ctas/nubble-final-cta";
@@ -8,7 +8,7 @@ import { LandingAnchors } from "@/components/blocks/landing/LandingAnchors";
 import { StickyNavbar } from "@/components/blocks/navbars/StickyNavbar";
 import { SimpleFooterWithFourGrids } from "@/components/blocks/footers/simple-footer-with-four-grids";
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -38,4 +38,25 @@ export default function Home() {
       <SimpleFooterWithFourGrids />
     </main>
   );
+}
+
+// Loading component for Suspense fallback
+function HomeLoading() {
+  return (
+    <main className="bg-gradient-to-b from-[#143638] to-black text-white antialiased min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
+        <p className="text-white">Loading...</p>
+      </div>
+    </main>
+  )
+}
+
+// Main export with Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={<HomeLoading />}>
+      <HomeContent />
+    </Suspense>
+  )
 }

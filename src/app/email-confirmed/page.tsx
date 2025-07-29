@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { CheckCircle, Download, Smartphone, Star, AlertCircle, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
@@ -8,7 +8,7 @@ import SEOHead from '@/components/seo/SEOHead'
 
 type ConfirmationState = 'loading' | 'success' | 'error' | 'already_confirmed'
 
-export default function EmailConfirmedPage() {
+function EmailConfirmationContent() {
   const [showAnimation, setShowAnimation] = useState(false)
   const [confirmationState, setConfirmationState] = useState<ConfirmationState>('loading')
   const [errorMessage, setErrorMessage] = useState('')
@@ -299,5 +299,26 @@ export default function EmailConfirmedPage() {
       </div>
     </div>
     </>
+  )
+}
+
+// Loading component for Suspense fallback
+function EmailConfirmationLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#143638] to-black">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#07393C] mx-auto mb-4"></div>
+        <p className="text-white">Loading email confirmation...</p>
+      </div>
+    </div>
+  )
+}
+
+// Main export with Suspense boundary
+export default function EmailConfirmedPage() {
+  return (
+    <Suspense fallback={<EmailConfirmationLoading />}>
+      <EmailConfirmationContent />
+    </Suspense>
   )
 }
