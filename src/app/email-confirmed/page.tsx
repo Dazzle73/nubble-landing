@@ -16,7 +16,7 @@ export default function EmailConfirmedPage() {
 
   useEffect(() => {
     const confirmEmail = async () => {
-      const token = searchParams.get('token')
+      const token = searchParams.get('token_hash') || searchParams.get('token')
       const type = searchParams.get('type')
       
       // If no token, assume user navigated directly (already confirmed)
@@ -33,7 +33,10 @@ export default function EmailConfirmedPage() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ token })
+          body: JSON.stringify({ 
+            token_hash: token,
+            type: 'email'
+          })
         })
 
         const result = await response.json()
