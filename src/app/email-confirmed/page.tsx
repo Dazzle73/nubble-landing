@@ -30,8 +30,8 @@ function EmailConfirmationContent() {
         // Create a temporary Supabase client for email confirmation
         const { createClient } = await import('@supabase/supabase-js')
         const supabase = createClient(
-          'https://kaverone73gmail.supabase.co',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthdmVyb25lNzNnbWFpbCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzM3NTY5MzY1LCJleHAiOjIwNTMxNDUzNjV9.wYlOUdQPKnJRTJOiVNYhQJlLxCGNWNZNMJzCiNYRkYU'
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
         )
 
         // Verify the email confirmation token
