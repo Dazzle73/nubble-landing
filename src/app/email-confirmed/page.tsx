@@ -27,18 +27,34 @@ function EmailConfirmationContent() {
       }
 
       try {
+        // Debug: Check if environment variables are available
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+        
+        console.log('Debug - Environment variables:', {
+          hasUrl: !!supabaseUrl,
+          hasKey: !!supabaseKey,
+          urlPrefix: supabaseUrl?.substring(0, 20) + '...',
+          keyPrefix: supabaseKey?.substring(0, 20) + '...'
+        })
+        
+        if (!supabaseUrl || !supabaseKey) {
+          throw new Error('Missing Supabase environment variables')
+        }
+
         // Create a temporary Supabase client for email confirmation
         const { createClient } = await import('@supabase/supabase-js')
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        )
+        const supabase = createClient(supabaseUrl, supabaseKey)
+
+        console.log('Debug - About to verify OTP with token:', token?.substring(0, 10) + '...')
 
         // Verify the email confirmation token
         const { data, error } = await supabase.auth.verifyOtp({
           token_hash: token,
           type: 'email'
         })
+        
+        console.log('Debug - Supabase response:', { data: !!data, error: error?.message })
 
         if (error) {
           if (error.message?.includes('already confirmed')) {
