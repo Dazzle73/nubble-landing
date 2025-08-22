@@ -97,12 +97,19 @@ export default function TermsConditions() {
                   <p>Nubble offers premium features through subscription:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Monthly subscription: €12/month</li>
-                    <li>Annual subscription: €8/month (billed annually, 33% savings)</li>
-                    <li>Subscriptions auto-renew unless cancelled</li>
-                    <li>You can cancel anytime through your app store account settings</li>
-                    <li>Refunds are handled according to app store policies</li>
-                    <li>Premium features include advanced AI coaching, detailed analytics, and priority support</li>
+                    <li>Annual subscription: €96/year (equivalent to €8/month)</li>
                   </ul>
+                  
+                  <p className="font-semibold">Subscription Details:</p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Subscriptions automatically renew unless auto-renewal is turned off at least 24 hours before the end of the current period</li>
+                    <li>Your account will be charged for renewal within 24 hours prior to the end of the current period</li>
+                    <li>You can manage and cancel your subscriptions by going to your Account Settings on the App Store after purchase</li>
+                    <li>Any unused portion of a free trial period will be forfeited when you purchase a subscription</li>
+                    <li>Refunds are handled according to App Store policies (Apple's standard refund policy)</li>
+                  </ul>
+                  
+                  <p>Premium features include advanced AI coaching, detailed analytics, and priority support</p>
                 </div>
               </section>
 
